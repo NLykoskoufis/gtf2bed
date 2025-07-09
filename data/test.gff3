@@ -1,0 +1,10 @@
+##gff-version 3
+#description: evidence-based annotation of the mouse genome (GRCm39), version M37 (Ensembl 114)
+#provider: GENCODE
+#contact: gencode-help@ebi.ac.uk
+#format: gff3
+#date: 2025-01-19
+##sequence-region chr1 1 195154279
+chr1	HAVANA	gene	3143476	3144545	.	+	.	ID=ENSMUSG00000102693.2;gene_id=ENSMUSG00000102693.2;gene_type=TEC;gene_name=4933401J01Rik;level=2;mgi_id=MGI:1918292;havana_gene=OTTMUSG00000049935.1
+chr1	HAVANA	transcript	3143476	3144545	.	+	.	ID=ENSMUST00000193812.2;Parent=ENSMUSG00000102693.2;gene_id=ENSMUSG00000102693.2;transcript_id=ENSMUST00000193812.2;gene_type=TEC;gene_name=4933401J01Rik;transcript_type=TEC;transcript_name=4933401J01Rik-201;level=2;transcript_support_level=NA;mgi_id=MGI:1918292;tag=basic,Ensembl_canonical,GENCODE_Primary;havana_gene=OTTMUSG00000049935.1;havana_transcript=OTTMUST00000127109.1
+chr1	HAVANA	exon	3143476	3144545	.	+	.	ID=exon:ENSMUST00000193812.2:1;Parent=ENSMUST00000193812.2;gene_id=ENSMUSG00000102693.2;transcript_id=ENSMUST00000193812.2;gene_type=TEC;gene_name=4933401J01Rik;transcript_type=TEC;transcript_name=4933401J01Rik-201;exon_number=1;exon_id=ENSMUSE00001343744.2;level=2;transcript_support_level=NA;mgi_id=MGI:1918292;tag=basic,Ensembl_canonical,GENCODE_Primary;havana_gene=OTTMUSG00000049935.1;havana_transcript=OTTMUST00000127109.1

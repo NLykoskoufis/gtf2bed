@@ -1,0 +1,93 @@
+cmake_minimum_required(VERSION 3.16)
+project(MyProgram)
+
+# Set C++ standard
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Add compiler flags for better debugging and warnings
+set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -Wall -Wextra")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
+
+# Set default build type to Release if not specified
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Debug)
+endif()
+
+# Include directories
+include_directories(lib)
+
+# Find all source files
+file(GLOB_RECURSE SOURCES 
+    "src/*.cpp"
+    "src/*.cc"
+    "src/*.cxx"
+)
+
+# Find all header files (optional, but good for IDEs)
+file(GLOB_RECURSE HEADERS 
+    "lib/*.h"
+    "lib/*.hpp"
+    "lib/*.hxx"
+    "src/*.h"
+    "src/*.hpp"
+)
+
+# Create executable
+add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+
+# Find Boost
+find_package(Boost REQUIRED COMPONENTS iostreams program_options)
+
+# Link libraries
+target_link_libraries(${PROJECT_NAME} 
+    Boost::iostreams
+    Boost::program_options
+    pthread  # uncomment if you need threading
+    z        # uncomment if you need zlib
+)
+
+# Set output directory
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+)
+
+find_package(OpenSSL REQUIRED)
+
+# ------------------------------
+#        GOOGLE TEST SETUP
+# ------------------------------
+find_package(GTest REQUIRED)
+
+# Find test source files
+file(GLOB_RECURSE TEST_SOURCES "tests/*.cpp")
+
+if(NOT TEST_SOURCES)
+    message(WARNING "⚠️ No test sources found in tests/*.cpp")
+endif()
+
+add_executable(unit_tests ${TEST_SOURCES})
+target_link_libraries(unit_tests
+    GTest::gtest_main
+    Boost::iostreams
+    Boost::program_options
+    pthread
+    z
+    ${OPENSSL_LIBRARIES}
+)
+
+enable_testing()
+include(GoogleTest)
+gtest_discover_tests(unit_tests)
+
+# Set output directory for tests
+set_target_properties(unit_tests PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/tests
+)
+
+
+# Print some information
+message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
+message(STATUS "C++ standard: ${CMAKE_CXX_STANDARD}")
+message(STATUS "Source files found: ${SOURCES}")
+message(STATUS "Header files found: ${HEADERS}")

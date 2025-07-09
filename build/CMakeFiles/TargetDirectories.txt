@@ -1,0 +1,5 @@
+/Users/nikolaoslykoskoufis/Personal/gtftools/build/CMakeFiles/MyProgram.dir
+/Users/nikolaoslykoskoufis/Personal/gtftools/build/CMakeFiles/unit_tests.dir
+/Users/nikolaoslykoskoufis/Personal/gtftools/build/CMakeFiles/test.dir
+/Users/nikolaoslykoskoufis/Personal/gtftools/build/CMakeFiles/edit_cache.dir
+/Users/nikolaoslykoskoufis/Personal/gtftools/build/CMakeFiles/rebuild_cache.dir
